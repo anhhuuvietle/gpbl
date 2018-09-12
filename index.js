@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('./config/database');
+const controller = require('./controller/controller');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,8 +17,11 @@ app.use((req, res, next) => {
 
 // Put all API endpoints under '/api'
 app.get('/api/example', (req, res) => {
-  res.json({ "success" : true })
+  res.json({ "success" : true });
 });
+
+app.post('/api/sendinfo', controller.handleInfo);
+app.post('/api/getnoti', controller.handleLocation);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back 404 response
