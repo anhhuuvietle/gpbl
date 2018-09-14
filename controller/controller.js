@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Accident = require('../models/Accident');
 const geolib = require('geolib');
 
-const isOvertime = ( time0, time1) => {
-    const sub = time1.getMiliseconds() - time0.getMiliseconds();
-    if (sub >= 30*60*1000) return true;
+const isOvertime = (time) => {
+    console.log(time);
+    console.log(time.getMilliseconds());
+    if (time.getMilliseconds() >= 30*60*1000) return true;
     return false;
 }
 module.exports = {
@@ -47,12 +48,12 @@ module.exports = {
         // When user only send location, get data from db, consider what is out of date
         let accidents = await Accident.find({status: true});
         const { loc0, loc1 } = req.body;
-        const today = new Date();
         let accs = [];
-        accidents.map(acc => {
+        accidents.map(async (acc) => {
             // disable all accidents overtime
-            if (isOvertime(acc.time, today)) {
-                acc.status = false;
+            // console.log(acc);
+            if (isOvertime(acc.time)) {
+                console.log(acc);
                 try {
                     await Accident.findByIdAndUpdate(acc._id, { $set: { status: false }});
                 }
