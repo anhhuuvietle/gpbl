@@ -3,9 +3,8 @@ const Accident = require('../models/Accident');
 const geolib = require('geolib');
 
 const isOvertime = (time) => {
-    console.log(time);
-    console.log(time.getMilliseconds());
-    if (time.getMilliseconds() >= 30*60*1000) return true;
+    const now = new Date();
+    if (now.getTime() - time.getTime() >= 30*60*1000) return true;
     return false;
 }
 module.exports = {
