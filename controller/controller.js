@@ -53,7 +53,7 @@ module.exports = {
         try {
 
             let accidents = await Accident.find({status: true});
-            const { loc0, loc1 } = req.body;
+            const [loc0, loc1] = req.body;
             let accs = [];
             accidents.map(async (acc) => {
                 // disable all accidents overtime
