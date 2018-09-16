@@ -22,7 +22,7 @@ const Accident = new Schema({
     },
     time: {
         type: Date,
-        default: new Date(),
+        default: Date.now,
     },
     status: {
         type: Boolean,
