@@ -90,7 +90,7 @@ module.exports = {
                             longitude: loc1.long
                         }
                     );
-                    if (dis1 - 10 < dis0 && dis1 <= 2000) {
+                    if (dis1 - 10 < dis0 && dis1 <= 2000 && dis1 > acc.rad) {
                         accs = [...accs, acc];
                     }
     
