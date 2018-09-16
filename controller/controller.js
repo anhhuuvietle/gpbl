@@ -96,7 +96,7 @@ module.exports = {
                 }
                 return acc;
             });
-            res.json(accs);
+            res.json(accidents);
         }
         catch(e) {
             res.sendStatus(500);
