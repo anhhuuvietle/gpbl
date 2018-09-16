@@ -90,16 +90,17 @@ module.exports = {
                             longitude: loc1.long
                         }
                     );
-                    if (dis1 - 10 < dis0 && dis1 <= 1000 && dis1 > acc.rad) {
+                    if (dis1 - 10 < dis0 && dis1 <= 2000) {
                         accs = [...accs, acc];
                     }
     
                 }
                 return acc;
             });
-            res.json(accidents);
+            res.json(accs);
         }
         catch(e) {
+            console.log(e);
             res.sendStatus(500);
         }
     }
